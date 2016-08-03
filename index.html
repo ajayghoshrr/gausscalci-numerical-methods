@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<!--
+  * Please see the included README.md file for license terms and conditions.
+  -->
+<head>
+   <title>Numerical Methods</title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+
+<!--
+  * The "meta viewport" tag (below) helps your app size appropriately to a device's ideal viewport.
+  * Note that Windows device viewports work better when initialized using the @viewport CSS rule.
+  * For a quick overview of "meta viewport" and @viewport, see this article:
+  *   http://webdesign.tutsplus.com/tutorials/htmlcss-tutorials/quick-tip-dont-forget-the-viewport-meta-tag
+  * To see how it works, try your app on a real device with and without a "meta viewport" tag.
+  * Additional useful references include:
+  *   http://www.quirksmode.org/mobile/viewports.html
+  *   http://www.quirksmode.org/mobile/metaviewport/devices.html
+  *   https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html
+-->
+
+    <!-- <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1"> -->
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=no">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1, maximum-scale=2"> -->
+
+    <style type="text/css">
+         body{
+background: #DAE2F8; /* fallback for old browsers */
+background: -webkit-linear-gradient(to left, #DAE2F8 , #D6A4A4); /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to left, #DAE2F8 , #D6A4A4); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        }
+        .myButton {
+	-moz-box-shadow: 3px 4px 0px 0px #899599;
+	-webkit-box-shadow: 3px 4px 0px 0px #899599;
+	box-shadow: 3px 4px 0px 0px #899599;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #bab1ba));
+	background:-moz-linear-gradient(top, #ededed 5%, #bab1ba 100%);
+	background:-webkit-linear-gradient(top, #ededed 5%, #bab1ba 100%);
+	background:-o-linear-gradient(top, #ededed 5%, #bab1ba 100%);
+	background:-ms-linear-gradient(top, #ededed 5%, #bab1ba 100%);
+	background:linear-gradient(to bottom, #ededed 5%, #bab1ba 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#bab1ba',GradientType=0);
+	background-color:#ededed;
+	-moz-border-radius:15px;
+	-webkit-border-radius:15px;
+	border-radius:15px;
+	border:1px solid #d6bcd6;
+	display:inline-block;
+	cursor:pointer;
+	color:#3a8a9e;
+	font-family:Arial;
+	font-size:17px;
+	padding:7px 25px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #e1e2ed;
+}
+.myButton:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #bab1ba), color-stop(1, #ededed));
+	background:-moz-linear-gradient(top, #bab1ba 5%, #ededed 100%);
+	background:-webkit-linear-gradient(top, #bab1ba 5%, #ededed 100%);
+	background:-o-linear-gradient(top, #bab1ba 5%, #ededed 100%);
+	background:-ms-linear-gradient(top, #bab1ba 5%, #ededed 100%);
+	background:linear-gradient(to bottom, #bab1ba 5%, #ededed 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#bab1ba', endColorstr='#ededed',GradientType=0);
+	background-color:#bab1ba;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+        .select{
+
+ -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    text-shadow: 0 2px 2px rgba(0, 0, 0, 0.3); 
+    -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
+    -moz-box-shadow: , 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
+    -webkit-background-clip: padding-box;
+    -webkit-transition: all 0.7s ease-out 0s;  /* Saf3.2+, Chrome */
+    -moz-transition: all 0.7s ease-out 0s;  /* FF4+ */
+    -ms-transition: all 0.7s ease-out 0s;  /* IE10? */
+    -o-transition: all 0.7s ease-out 0s;  /* Opera 10.5+ */
+    transition: all 0.7s ease-out 0s;
+        
+
+
+background: #DAE2F8; /* fallback for old browsers */
+background: -webkit-linear-gradient(to left, #DAE2F8 , #D6A4A4); /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to left, #DAE2F8 , #D6A4A4); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        height: 20px;
+            
+        }
+        .heading{
+            
+	color: #444;
+	margin: 0;
+	padding: 0px 0px 6px 0px;
+	font-size: 30px;
+	line-height: 44px;
+	letter-spacing: -2px;
+	font-weight: bold;
+            text-align: center;
+            text-shadow: 2px 2px 2px #CCCCCC;
+            color: brown;
+            font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", sans-serif;
+    
+           
+        }
+        .label{
+            font-family: sans-serif;
+            font-size: 20px;
+            color: darkgoldenrod;
+            
+        }
+        .opt{font-family: sans-serif;
+            color: chocolate;
+            border-color: chartreuse;
+            font-size: 20px;
+            
+        }
+        
+        .footer{
+            color: darkblue;
+            font-size: 20px;
+            text-align: center;
+        }
+        .select{
+         max-height: 50px;       
+        }
+        .contact{
+            text-align: center;
+        }
+        hr{
+            height: 2px;
+            background-color:burlywood;
+        }
+        
+    
+    </style>
+<script type="text/javascript">
+function fun()   
+{
+    topic = document.form1.topic.value;
+    if(topic == "gelim")
+    {window.location = "../gelimination.html";}
+	 else if(topic=="gjor")
+	{window.location = "../gjacobi.html";}
+	 else if(topic=="gseidel")
+	{window.location = "../gseidel.html";}
+	 	else
+	{alert("wrong entry!!!")}
+	
+
+	
+    
+ 
+}
+</script>
+</head>
+
+<body>
+   
+    <div class="heading"> <h3><img src="../logo.png" width="60px" height="60px"> <br>   Numerical_Methods</h3></div>
+    <hr>
+    <br>
+    <br><br>
+    <br>
+    
+<div> 
+<form name="form1">
+    <label class="label">Enter the Method:</span> 
+    <select name="topic" id="topic" class="select" style="height:40px; width:180px">
+        <option selected="selected" value = "gelim" class="opt">Gauss Elimination</option>
+        <option value = "gjor" class="opt">Gauss Jacobi</option>
+		<option value = "gseidel" class="opt">Gauss Seidel</option>
+		 </select>
+    </label>
+     
+    <label><br />
+    <br />
+    
+        <p>
+     <input type="button" value="Go!" onClick = "fun()" class="myButton" />
+	 
+	 <br><br><br>
+     <br>
+    <br><br>
+     <br>
+    <br><hr><br>
+            
+        <p class="contact"><a href="contactus.html"> Contact Us</p> </a>   
+    <div class="footer"> 2016® all rights reserved</div>
+
+
+</form>
+</body>
+</html>

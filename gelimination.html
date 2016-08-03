@@ -1,0 +1,210 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Gauss Elimination</title>
+<style type="text/css">
+    body{
+        
+
+background: #BA5370; /* fallback for old browsers */
+background: -webkit-linear-gradient(to left, #BA5370 , #F4E2D8); /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to left, #BA5370 , #F4E2D8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        
+    }
+    .heading{
+            
+	color: #444;
+	margin: 0;
+	padding: 0px 0px 6px 0px;
+	font-size: 30px;
+	line-height: 44px;
+	letter-spacing: -2px;
+	font-weight: bold;
+            text-align: center;
+            text-shadow: 2px 2px 2px #CCCCCC;
+            color: brown;
+            font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", sans-serif;
+          padding-top: 40px;
+      
+        }
+     .myButton {
+	-moz-box-shadow: 3px 4px 0px 0px #899599;
+	-webkit-box-shadow: 3px 4px 0px 0px #899599;
+	box-shadow: 3px 4px 0px 0px #899599;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #bab1ba));
+	background:-moz-linear-gradient(top, #ededed 5%, #bab1ba 100%);
+	background:-webkit-linear-gradient(top, #ededed 5%, #bab1ba 100%);
+	background:-o-linear-gradient(top, #ededed 5%, #bab1ba 100%);
+	background:-ms-linear-gradient(top, #ededed 5%, #bab1ba 100%);
+	background:linear-gradient(to bottom, #ededed 5%, #bab1ba 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#bab1ba',GradientType=0);
+	background-color:#ededed;
+	-moz-border-radius:15px;
+	-webkit-border-radius:15px;
+	border-radius:15px;
+	border:1px solid #d6bcd6;
+	display:inline-block;
+	cursor:pointer;
+	color:#3a8a9e;
+	font-family:Arial;
+	font-size:17px;
+	padding:7px 25px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #e1e2ed;
+}
+.myButton:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #bab1ba), color-stop(1, #ededed));
+	background:-moz-linear-gradient(top, #bab1ba 5%, #ededed 100%);
+	background:-webkit-linear-gradient(top, #bab1ba 5%, #ededed 100%);
+	background:-o-linear-gradient(top, #bab1ba 5%, #ededed 100%);
+	background:-ms-linear-gradient(top, #bab1ba 5%, #ededed 100%);
+	background:linear-gradient(to bottom, #bab1ba 5%, #ededed 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#bab1ba', endColorstr='#ededed',GradientType=0);
+	background-color:#bab1ba;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+    .style-5 input[type="text"] {
+  padding: 10px;
+  border: solid 1px #fff;
+  box-shadow: inset 1px 1px 2px 0 #707070;
+  transition: box-shadow 0.3s;
+}
+.style-5 input[type="text"]:focus,
+.style-5 input[type="text"].focus {
+  box-shadow: inset 1px 1px 2px 0 #c9c9c9;
+}
+    .list{
+    background: white; 
+    border: 1px solid #ffa853; 
+    border-radius: 5px; 
+    box-shadow: 0 0 5px 3px #ffa853; 
+    color: #666; 
+    outline: none; 
+    height:23px; 
+    width: 275px; 
+  } 
+    .font{
+        color:chocolate;
+        font-family: sans-serif;
+    
+    }
+    .values{
+        color: coral;
+        font-family: sans-serif;
+    }
+      hr{
+            height: 2px;
+            background-color:burlywood;
+        }
+ </style> 
+
+    
+
+
+
+</style>
+<script type="text/javascript">
+
+
+function get(){
+var a,b,c,d,e,f,g,h,i,j,k,l,m,n,x,y,p,q,r;
+a=document.getElementById("a1").value;
+b=document.getElementById("a2").value;
+c=document.getElementById("a3").value;
+d=document.getElementById("d1").value;
+e=document.getElementById("b1").value;
+f=document.getElementById("b2").value;
+g=document.getElementById("b3").value;
+h=document.getElementById("d2").value;
+m=document.getElementById("c1").value;
+n=document.getElementById("c2").value;
+k=document.getElementById("c3").value;
+l=document.getElementById("d3").value;
+var myarray=new Array();
+myarray[0]=new Array(4);
+myarray[0][0]=a;
+myarray[0][1]=b;
+myarray[0][2]=c;
+myarray[0][3]=d;
+myarray[1]=new Array(4);
+myarray[1][0]=e;
+myarray[1][1]=f;
+myarray[1][2]=g;
+myarray[1][3]=h;
+myarray[2]=new Array(4);
+myarray[2][0]=m;
+myarray[2][1]=n;
+myarray[2][2]=k;
+myarray[2][3]=l;
+for(i=0;i<=myarray.length;i++){
+myarray[0][i]=(1/a)*myarray[0][i];
+}
+for(i=0;i<=myarray.length;i++){
+myarray[1][i]=(myarray[1][i]-(e*myarray[0][i]));
+myarray[2][i]=(myarray[2][i]-(m*myarray[0][i]));
+}
+x=myarray[1][1];
+y=myarray[2][1];
+
+for(i=0;i<=myarray.length;i++){
+myarray[1][i]=(1/x)*myarray[1][i];
+
+}
+for(i=0;i<=myarray.length;i++){
+myarray[2][i]=(1/y)*myarray[2][i];
+
+}
+for(i=0;i<=myarray.length;i++){
+myarray[2][i]=myarray[2][i]-myarray[1][i];
+}
+z=myarray[2][3]/myarray[2][2];
+y=(myarray[1][3]-(myarray[1][2]*z))/myarray[1][1];
+x=myarray[0][3]-(myarray[0][1]*y)-(myarray[0][2]*z)
+
+document.getElementById("xvalue").innerHTML=x;
+document.getElementById("yvalue").innerHTML=y;
+document.getElementById("zvalue").innerHTML=z;
+return false;
+
+}
+
+</script>
+</head>
+
+<body>
+
+<a href="www/index.html">
+    <h2 class="heading"><img src="logo.png" width="60px" height="60px"></a> <br>  Gauss Elimination</h2>
+    <hr>
+
+<br /><br />
+    <br>
+    
+
+<div class="font">
+<th>
+<tr>
+<input type="text" style="width:40px" id="a1" class="list" />X1+<input type="text"  style="width:40px" id="a2" class="list"/>Y1+<input type="text" style="width:40px" id="a3"  class="list"/>Z1=<input type="text" style="width:40px" id="d1" class="list" /></tr><br />
+<tr><input type="text" style="width:40px" id="b1" class="list"/>X2+<input type="text" style="width:40px" id="b2" class="list"/>Y2+<input type="text" style="width:40px" id="b3" class="list"/>Z2=<input type="text" style="width:40px" id="d2" class="list"/></tr><br />
+<tr><input type="text" style="width:40px" id="c1" class="list"/>X3+<input type="text" style="width:40px" id="c2" class="list" />Y3+<input type="text" style="width:40px" id="c3" class="list" />Z3=<input type="text" style="width:40px" id="d3" class="list" /></tr></th><br />
+    </div>
+<br />
+<div> <button type="submit" onclick="get()" id="back" class="myButton" />Submit</button></div> 
+
+
+<br />
+<br />
+<div class="values">
+X=<div id="xvalue">        </div><br />
+Y=<div id="yvalue">         </div><br />
+Z=<div id="zvalue">          </div><br />
+</div>
+
+
+
+</body>
+</html>
